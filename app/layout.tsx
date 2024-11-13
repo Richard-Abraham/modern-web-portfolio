@@ -25,10 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="fixed inset-0 -z-10 dark:gradient-animate" />
+        <div className="relative z-0">{children}</div>
       </body>
     </html>
   );

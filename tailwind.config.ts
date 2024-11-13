@@ -6,8 +6,12 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
+      animation: {
+        'gradient-slow': 'gradient-slow 15s ease infinite',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
