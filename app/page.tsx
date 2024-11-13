@@ -36,11 +36,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-white dark:from-blue-950 dark:via-purple-950 dark:to-gray-900 -z-10 animate-gradient-slow" />
-      <div className="absolute inset-0 bg-white/50 dark:bg-gray-950/50 backdrop-blur-3xl -z-5" />
+    <div className="min-h-screen relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-white dark:from-blue-950 dark:via-purple-950 dark:to-gray-900 -z-10 animate-gradient-slow fixed" />
+      <div className="absolute inset-0 bg-white/50 dark:bg-gray-950/50 backdrop-blur-3xl -z-5 fixed" />
       <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} activeSection={activeSection} />
-      <main className="main-container">
+      <main className="relative z-[2]">
         <div className="container mx-auto px-4">
           <Hero />
           <Projects />

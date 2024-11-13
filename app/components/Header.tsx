@@ -62,101 +62,106 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <motion.div 
+          className="hidden md:flex items-center gap-8"
+          variants={itemVariants}
+        >
           {navItems.map((item) => (
-            <motion.div
+            <Link
               key={item.href}
-              variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
+              href={item.href}
+              className="relative group"
             >
-              <Link 
-                href={item.href} 
-                className={`
-                  relative px-2 py-1 text-gray-700 dark:text-gray-200 transition-all duration-300
-                  ${activeSection === item.label.toLowerCase() ? 'text-blue-600 dark:text-blue-400' : ''}
-                `}
+              <span className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                ${activeSection === item.href.slice(1) ? 'text-blue-600 dark:text-blue-400' : ''}`}
               >
                 {item.label}
-                {activeSection === item.label.toLowerCase() && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600"
-                    layoutId="underline"
-                    transition={{ type: "spring", bounce: 0.25 }}
-                  />
-                )}
-              </Link>
-            </motion.div>
+              </span>
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 
+                transition-all duration-300 group-hover:w-full
+                ${activeSection === item.href.slice(1) ? 'w-full' : ''}`} 
+              />
+            </Link>
           ))}
-          <motion.div variants={itemVariants}>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="relative overflow-hidden group"
-            >
-              <motion.div
-                initial={false}
-                animate={{ rotate: isDarkMode ? 180 : 0 }}
-                transition={{ duration: 0.5 }}
+          
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="ml-4 hover:scale-110 transition-transform"
+          >
+            {isDarkMode ? (
+              <Sun className="h-5 w-5 text-yellow-500" />
+            ) : (
+              <Moon className="h-5 w-5 text-blue-600" />
+            )}
+          </Button>
+        </motion.div>
+
+        {/* Mobile Menu Button */}
+        <motion.button
+          className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          variants={itemVariants}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          ) : (
+            <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+          )}
+        </motion.button>
+      </nav>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 top-[73px] bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="container mx-auto px-4 py-8 flex flex-col items-center gap-6">
+              {navItems.map((item) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="relative group text-xl"
+                  >
+                    <span className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                      ${activeSection === item.href.slice(1) ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                    >
+                      {item.label}
+                    </span>
+                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 
+                      transition-all duration-300 group-hover:w-full
+                      ${activeSection === item.href.slice(1) ? 'w-full' : ''}`} 
+                    />
+                  </Link>
+                </motion.div>
+              ))}
+              
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="mt-4 hover:scale-110 transition-transform"
               >
                 {isDarkMode ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
                 ) : (
-                  <Moon className="h-5 w-5 text-blue-500" />
-                )}
-              </motion.div>
-            </Button>
-          </motion.div>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            className="fixed inset-0 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm md:hidden"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            <nav className="flex flex-col h-full items-center justify-center gap-8">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`text-2xl ${
-                    activeSection === item.label.toLowerCase()
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-900 dark:text-gray-100'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsDarkMode(!isDarkMode)}
-              >
-                {isDarkMode ? (
-                  <Sun className="h-6 w-6 text-yellow-500" />
-                ) : (
-                  <Moon className="h-6 w-6 text-blue-500" />
+                  <Moon className="h-5 w-5 text-blue-600" />
                 )}
               </Button>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
