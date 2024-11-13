@@ -15,6 +15,8 @@ export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particles = useRef<Particle[]>([])
   const mousePosition = useRef({ x: 0, y: 0 })
+  const animationFrameId = useRef<number>()
+  const lastMouseUpdate = useRef<number>(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -29,13 +31,13 @@ export function ParticleBackground() {
     }
 
     const createParticles = () => {
-      particles.current = Array.from({ length: 100 }, () => ({
+      particles.current = Array.from({ length: 50 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 5 + 2,
-        speedX: (Math.random() - 0.5) * 2,
-        speedY: (Math.random() - 0.5) * 2,
-        opacity: Math.random() * 0.7 + 0.3
+        size: Math.random() * 3 + 1,
+        speedX: (Math.random() - 0.5) * 1,
+        speedY: (Math.random() - 0.5) * 1,
+        opacity: Math.random() * 0.5 + 0.2
       }))
     }
 
@@ -44,75 +46,85 @@ export function ParticleBackground() {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
-      particles.current.forEach(particle => {
-        // Add mouse interaction
-        const dx = mousePosition.current.x - particle.x
-        const dy = mousePosition.current.y - particle.y
-        const distance = Math.sqrt(dx * dx + dy * dy)
-        
-        if (distance < 100) {
-          particle.x += (dx / distance) * 2
-          particle.y += (dy / distance) * 2
+      const now = Date.now()
+      const particleArray = particles.current
+
+      for (let i = 0; i < particleArray.length; i++) {
+        const particle = particleArray[i]
+
+        if (now - lastMouseUpdate.current > 50) {
+          const dx = mousePosition.current.x - particle.x
+          const dy = mousePosition.current.y - particle.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          
+          if (distance < 100) {
+            particle.x += (dx / distance)
+            particle.y += (dy / distance)
+          }
         }
 
         particle.x += particle.speedX
         particle.y += particle.speedY
 
-        // Wrap around screen
         if (particle.x > canvas.width) particle.x = 0
         if (particle.x < 0) particle.x = canvas.width
         if (particle.y > canvas.height) particle.y = 0
         if (particle.y < 0) particle.y = canvas.height
 
-        // Draw particle
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(239, 68, 68, ${particle.opacity})`
         ctx.fill()
 
-        // Draw connections
-        particles.current.forEach(otherParticle => {
+        for (let j = i + 1; j < particleArray.length; j++) {
+          const otherParticle = particleArray[j]
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 100) {
+          if (distance < 80) {
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(239, 68, 68, ${0.2 * (1 - distance / 100)})`
+            ctx.strokeStyle = `rgba(239, 68, 68, ${0.15 * (1 - distance / 80)})`
             ctx.lineWidth = 0.5
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
             ctx.stroke()
           }
-        })
-      })
+        }
+      }
 
-      requestAnimationFrame(animate)
+      if (now - lastMouseUpdate.current > 50) {
+        lastMouseUpdate.current = now
+      }
+
+      animationFrameId.current = requestAnimationFrame(animate)
     }
 
     resizeCanvas()
     createParticles()
     animate()
 
-    window.addEventListener('resize', resizeCanvas)
-    window.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       mousePosition.current = { x: e.clientX, y: e.clientY }
-    })
+    }
+
+    window.addEventListener('resize', resizeCanvas)
+    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
       window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+      }
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto z-[1]"
-      style={{
-        width: '100%',
-        height: '100%',
-        background: 'transparent'
-      }}
+      className="absolute inset-0 w-full h-full"
+      style={{ opacity: 0.5 }}
     />
   )
 } 
