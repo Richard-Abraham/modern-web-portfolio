@@ -77,3 +77,11 @@
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
+:root {
+  --loader-color: #2563eb; /* blue-600 */
+}
+
+.dark {
+  --loader-color: #60a5fa; /* blue-400 */
+}

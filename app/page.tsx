@@ -7,9 +7,11 @@ import { Hero } from "@/app/components/Hero"
 import { Projects } from "@/app/components/Projects"
 import { Skills } from "@/app/components/Skills"
 import { useScrollSection } from "@/app/hooks/useScrollSection"
+import { Loading } from "./components/Loading"
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const activeSection = useScrollSection()
 
   useEffect(() => {
@@ -19,6 +21,19 @@ export default function Home() {
       document.documentElement.classList.remove('dark')
     }
   }, [isDarkMode])
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
