@@ -5,6 +5,7 @@ import { Github, Linkedin } from 'lucide-react'
 import { Button } from "./ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { ParticleBackground } from "./ParticleBackground"
 
 export function Hero() {
   const textVariants = {
@@ -54,6 +55,9 @@ export function Hero() {
       initial="hidden"
       animate="visible"
     >
+      <div className="absolute inset-0">
+        <ParticleBackground />
+      </div>
       <div className="flex flex-col-reverse md:flex-row items-center justify-between h-full gap-8 md:gap-0">
         <div className="w-full md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
           <motion.h1 
