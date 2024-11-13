@@ -9,26 +9,26 @@ import { Github, ExternalLink } from 'lucide-react'
 const projects = [
   {
     title: "Project 1",
-    description: "A full-stack web application built with Next.js and TypeScript",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    github: "#",
-    demo: "#",
+    description: "An Ai tool than summarizes and Humanizes text",
+    tech: ["Next.js", "javascript", "Tailwind CSS"],
+    github: "https://github.com/Richard-Abraham/CleanTextAPP",
+    demo: "https://ai-text-humanizer.netlify.app",
     image: "/images/cleantext.png"
   },
   {
     title: "Project 2",
-    description: "An e-commerce platform with real-time updates",
-    tech: ["React", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#",
+    description: "An Ai tool that helps you engineer prompts",
+    tech: ["javascript", "Node.js", "Typescript"],
+    github: "https://github.com/Richard-Abraham/Prompt-Engineer",
+    demo: "https://promptengineerapp.netlify.app",
     image: "/images/prompt.png"
   },
   {
     title: "Project 3",
-    description: "A mobile-first progressive web application",
-    tech: ["React Native", "Firebase", "Redux"],
-    github: "#",
-    demo: "#",
+    description: "A wepsite Application for an Academy",
+    tech: ["Typescript", "Subabase", "Javascript"],
+    github: "https://github.com/Richard-Abraham/vikapuwebsite-main",
+    demo: "https://vikapuwebsite-main-richard-abrahams-projects.vercel.app",
     image: "/images/vikapu.png"
   }
 ]

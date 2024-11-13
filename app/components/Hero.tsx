@@ -110,15 +110,29 @@ export function Hero() {
                 variant="outline" 
                 size="icon"
                 className="w-10 h-10 sm:w-12 sm:h-12 hover:scale-110 transition-transform hover:bg-blue-500/10 dark:hover:bg-blue-500/20 border-2"
+                asChild
               >
-                <Github className="h-5 w-5 sm:h-6 sm:w-6 hover:text-blue-600 dark:hover:text-blue-400" />
+                <Link 
+                  href="https://github.com/Richard-Abraham" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-5 w-5 sm:h-6 sm:w-6 hover:text-blue-600 dark:hover:text-blue-400" />
+                </Link>
               </Button>
               <Button 
                 variant="outline" 
                 size="icon"
                 className="w-10 h-10 sm:w-12 sm:h-12 hover:scale-110 transition-transform hover:bg-blue-500/10 dark:hover:bg-blue-500/20 border-2"
+                asChild
               >
-                <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 hover:text-blue-600 dark:hover:text-blue-400" />
+                <Link 
+                  href="https://www.linkedin.com/in/richard-owino/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 hover:text-blue-600 dark:hover:text-blue-400" />
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
