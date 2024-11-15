@@ -8,7 +8,7 @@ import { Github, ExternalLink } from 'lucide-react'
 
 const projects = [
   {
-    title: "Project 1",
+    title: "Ai Text Humanizer",
     description: "An Ai tool than summarizes and Humanizes text",
     tech: ["Next.js", "javascript", "Tailwind CSS"],
     github: "https://github.com/Richard-Abraham/CleanTextAPP",
@@ -16,7 +16,7 @@ const projects = [
     image: "/images/cleantext.png"
   },
   {
-    title: "Project 2",
+    title: "Prompt Engineer",
     description: "An Ai tool that helps you engineer prompts",
     tech: ["javascript", "Node.js", "Typescript"],
     github: "https://github.com/Richard-Abraham/Prompt-Engineer",
@@ -24,13 +24,21 @@ const projects = [
     image: "/images/prompt.png"
   },
   {
-    title: "Project 3",
+    title: "Vikapu Website",
     description: "A wepsite Application for an Academy",
     tech: ["Typescript", "Subabase", "Javascript"],
     github: "https://github.com/Richard-Abraham/vikapuwebsite-main",
     demo: "https://vikapuwebsite-main-richard-abrahams-projects.vercel.app",
     image: "/images/vikapu.png"
-  }
+  },
+  {
+    title: "Song Promoter",
+    description: "An Ai tool than gives you based details on how to promote your song",
+    tech: ["Next.js", "javascript", "Tailwind CSS"],
+    github: "https://github.com/Richard-Abraham/song-promo",
+    demo: "https://songpromoter.netlify.app",
+    image: "/images/song promo.png"
+  },
 ]
 
 export function Projects() {

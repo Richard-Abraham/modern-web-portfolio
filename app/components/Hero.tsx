@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Github, Linkedin } from 'lucide-react'
 import { Button } from "./ui/button"
-import Image from "next/image"
+
 import Link from "next/link"
 import { ParticleBackground } from "./ParticleBackground"
 
@@ -144,14 +144,18 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="relative w-full aspect-square md:h-full">
-            <Image
-              src="/images/logo.png"
-              alt="Profile"
-              fill
-              className="object-contain"
-              priority
-            />
+          <div className="relative w-full aspect-square md:h-full flex items-center justify-center">
+            <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] relative">
+              <video
+                src="/images/videome.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover rounded-lg"
+                style={{ filter: 'none' }}
+              />
+            </div>
           </div>
         </motion.div>
       </div>
