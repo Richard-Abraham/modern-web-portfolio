@@ -146,7 +146,7 @@ export function Hero() {
         >
           <div className="relative w-full aspect-square md:h-full">
             <Image
-              src="/images/abe.png"
+              src="/images/logo.png"
               alt="Profile"
               fill
               className="object-contain"
