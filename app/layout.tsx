@@ -17,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Modern Portfolio",
-  description: "A modern, responsive portfolio built with Next.js",
+  title: "Richard's Portfolio",
+  description: "A portfolio showing the WEB APPS I have built",
 };
 
 export const viewport: Viewport = {
