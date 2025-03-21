@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Moon, Sun, Menu, X } from 'lucide-react'
 import { Button } from "./ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface HeaderProps {
   isDarkMode: boolean
@@ -14,6 +14,28 @@ interface HeaderProps {
 
 export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.menu-button')) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuOpen])
 
   const navItems = [
     { href: "#projects", label: "Projects" },
@@ -49,31 +71,35 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
 
   return (
     <motion.header 
-      className="fixed top-0 w-full z-50 px-4 pt-4"
+      className={`fixed top-0 w-full z-50 px-4 transition-all duration-300 ${
+        isScrolled ? 'pt-2' : 'pt-4'
+      }`}
       initial="hidden"
       animate="visible"
       variants={headerVariants}
     >
-      <div className="glass-header mx-auto max-w-3xl">
+      <div className={`glass-header mx-auto max-w-3xl transition-all duration-300 ${
+        isScrolled ? 'shadow-lg' : ''
+      }`}>
         <nav className="container mx-auto px-3 py-2 flex items-center justify-between">
-          <Link href="/" className="text-lg font-bold">
+          <Link href="/" className="text-lg font-bold font-geist-sans">
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 text-transparent bg-clip-text">
-              Richard&apos;s Portfolio.
+              Richard&apos;s Portfolio
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <motion.div 
-            className="hidden md:flex items-center gap-3"
+            className="hidden md:flex items-center gap-4"
             variants={itemVariants}
           >
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-2 py-1 rounded-md transition-colors ${
+                className={`px-3 py-2 rounded-md transition-all duration-300 font-geist-sans hover:bg-gray-100 dark:hover:bg-gray-800 ${
                   activeSection === item.href.slice(1)
-                    ? "text-blue-600 dark:text-blue-400"
+                    ? "text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-800"
                     : "text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                 }`}
               >
@@ -85,7 +111,7 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
               variant="outline"
               size="icon"
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="ml-4 hover:scale-110 transition-transform"
+              className="ml-2 hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               {isDarkMode ? (
                 <Sun className="h-5 w-5 text-yellow-500" />
@@ -97,9 +123,10 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors menu-button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             variants={itemVariants}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
               <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
@@ -113,7 +140,7 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="fixed inset-0 top-[73px] bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg md:hidden"
+              className="fixed inset-0 top-[73px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg md:hidden mobile-menu"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -131,7 +158,7 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
                     <Link
                       href={item.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="relative group text-xl"
+                      className="relative group text-xl font-geist-sans"
                     >
                       <span className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
                         ${activeSection === item.href.slice(1) ? 'text-blue-600 dark:text-blue-400' : ''}`}
@@ -150,7 +177,7 @@ export function Header({ isDarkMode, setIsDarkMode, activeSection }: HeaderProps
                   variant="outline"
                   size="icon"
                   onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="mt-4 hover:scale-110 transition-transform"
+                  className="mt-4 hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   {isDarkMode ? (
                     <Sun className="h-5 w-5 text-yellow-500" />
