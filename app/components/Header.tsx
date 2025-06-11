@@ -160,10 +160,10 @@ export function Header({
               />
               {/* Sheet content */}
               <motion.div
-                className="fixed inset-x-0 top-[73px] z-[52] md:hidden mobile-menu h-[calc(100vh-73px)] overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                className="fixed inset-x-0 top-[73px] z-[52] md:hidden mobile-menu h-[calc(100vh-73px)] overflow-y-auto"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-900/60 backdrop-blur-xl" />
@@ -183,6 +183,7 @@ export function Header({
                           href={item.href}
                           onClick={() => setIsMenuOpen(false)}
                           className="relative group w-full flex items-center justify-center"
+                          aria-label={`Navigate to ${item.label}`}
                         >
                           <div
                             className={`w-full py-4 px-6 rounded-lg transition-all duration-300
@@ -218,6 +219,7 @@ export function Header({
                         size="icon"
                         onClick={() => setIsDarkMode(!isDarkMode)}
                         className="transition-all duration-300 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50 hover:bg-white/80 dark:hover:bg-gray-900/80 hover:border-gray-300 dark:hover:border-gray-600"
+                        aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
                       >
                         {isDarkMode ? (
                           <Sun className="h-5 w-5 text-yellow-500" />

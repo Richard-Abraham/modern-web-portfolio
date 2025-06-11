@@ -17,11 +17,11 @@ export function Loading() {
       <div className="absolute inset-0 bg-[#FEFFFF]/50 dark:bg-gray-950/50 backdrop-blur-3xl" />
       <div className="relative text-center space-y-4">
         <l-superballs
-          size="50"
-          speed="1.4"
+          size="45"
+          speed="1.2"
           color="white"
         ></l-superballs>
-        <p className="text-white text-lg font-medium animate-pulse">
+        <p className="text-white text-base font-medium animate-pulse">
           Loading...
         </p>
       </div>

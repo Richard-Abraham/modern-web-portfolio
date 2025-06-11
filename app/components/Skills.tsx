@@ -81,7 +81,7 @@ export function Skills() {
           Technical Skills
         </motion.h2>
         <motion.div 
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-6"
           variants={containerVariants}
         >
           {skillsData.map((skill, index) => (
@@ -90,17 +90,17 @@ export function Skills() {
               custom={index}
               variants={cardVariants}
               whileHover="hover"
-              className="glass-card p-4 sm:p-6 flex flex-col items-center justify-center gap-3 relative group"
+              className="glass-card p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center gap-2 sm:gap-3 relative group"
               style={{
                 transformOrigin: "center center",
                 transformStyle: "preserve-3d"
               }}
             >
               <skill.icon 
-                className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-110" 
+                className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110" 
                 style={{ color: skill.color }} 
               />
-              <span className="text-sm sm:text-base text-gray-900 dark:text-white font-medium font-geist-sans text-center">
+              <span className="text-xs sm:text-sm md:text-base text-gray-900 dark:text-white font-medium font-geist-sans text-center">
                 {skill.name}
               </span>
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none" />

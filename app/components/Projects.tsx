@@ -9,6 +9,24 @@ import { useState } from "react";
 
 const projects = [
   {
+    title: "Vikapu Website",
+    description:
+      "A modern website application for an academy, featuring course management and student interactions.",
+    tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+    github: "https://github.com/Richard-Abraham/vikapuwebsite-main",
+    demo: "https://vikapuwebsite-main-richard-abrahams-projects.vercel.app",
+    image: "/images/vikapu.png",
+  },
+  {
+    title: "Nobuk Africa",
+    description:
+      "A modern website for Nobuk Africa, showcasing their services and mission.",
+    tech: ["TypeScript", "Vite", "Tailwind CSS"],
+    github: "",
+    demo: "https://www1.nobuk.africa",
+    image: "/images/Screenshot 2025-06-11 201126.png",
+  },
+  {
     title: "Ai Text Humanizer",
     description:
       "An AI tool that summarizes and humanizes text, making content more engaging and natural-sounding.",
@@ -25,15 +43,6 @@ const projects = [
     github: "https://github.com/Richard-Abraham/Prompt-Engineer",
     demo: "https://promptengineerapp.netlify.app",
     image: "/images/prompt.png",
-  },
-  {
-    title: "Vikapu Website",
-    description:
-      "A modern website application for an academy, featuring course management and student interactions.",
-    tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-    github: "https://github.com/Richard-Abraham/vikapuwebsite-main",
-    demo: "https://vikapuwebsite-main-richard-abrahams-projects.vercel.app",
-    image: "/images/vikapu.png",
   },
   {
     title: "Song Promoter",
@@ -113,29 +122,31 @@ export function Projects() {
                     ))}
                   </div>
                   <div className="flex gap-4 mt-6 justify-center lg:justify-start">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="relative overflow-hidden group hover:border-blue-500 transition-colors font-geist-sans"
-                    >
-                      <Link
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
+                    {project.github && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="relative overflow-hidden group hover:border-blue-500 transition-colors font-geist-sans"
                       >
-                        <Github className="h-4 w-4 group-hover:rotate-12 transition-transform" />
-                        <span className="relative">
-                          <span className="group-hover:opacity-0 transition-opacity">
-                            Code
+                        <Link
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <Github className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+                          <span className="relative">
+                            <span className="group-hover:opacity-0 transition-opacity">
+                              Code
+                            </span>
+                            <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                              View Source
+                            </span>
                           </span>
-                          <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            View Source
-                          </span>
-                        </span>
-                      </Link>
-                    </Button>
+                        </Link>
+                      </Button>
+                    )}
                     <Button
                       size="sm"
                       asChild

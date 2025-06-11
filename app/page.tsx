@@ -39,7 +39,7 @@ export default function Home() {
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 1500)
+    }, 1000)
 
     return () => clearTimeout(timer)
   }, [])
