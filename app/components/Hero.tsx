@@ -98,7 +98,7 @@ export function Hero() {
               asChild
             >
               <Link 
-                href="/Docs/Richard Owino FCVP1HB.pdf"
+                href="/Docs/Richard Tech CV25.pdf"
                 download="Richard_Owino_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
