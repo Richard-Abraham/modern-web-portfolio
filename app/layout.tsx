@@ -1,18 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "swap",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -28,6 +21,8 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
+import React from "react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
+      <body className={`${poppins.variable} antialiased min-h-screen`}>
         <div className="fixed inset-0 -z-10 dark:gradient-animate" />
         <div className="relative z-0">{children}</div>
       </body>

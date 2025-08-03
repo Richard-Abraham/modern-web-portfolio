@@ -23,8 +23,8 @@ const projects = [
       "A modern website for Nobuk Africa, showcasing their services and mission.",
     tech: ["TypeScript", "Vite", "Tailwind CSS"],
     github: "",
-    demo: "https://www1.nobuk.africa",
-    image: "/images/Screenshot 2025-06-11 201126.png",
+    demo: "https://https://www.nobuk.africa",
+    image: "/images/Nobuk.png",
   },
   {
     title: "Ai Text Humanizer",
@@ -71,7 +71,7 @@ export function Projects() {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-gray-900 dark:text-white font-geist-sans text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-gray-900 dark:text-white font-poppins text-center">
           Featured Projects
         </h2>
         <div className="space-y-16 sm:space-y-24 w-full">
@@ -83,39 +83,39 @@ export function Projects() {
                 } gap-8 items-center w-full`}
               >
                 <div className="w-full lg:w-1/2">
-                  <div className="relative aspect-video rounded-xl glass-card group w-full">
+                  <div className="relative aspect-video rounded-xl glass-card group w-full shadow-lg border border-gray-200 dark:border-gray-700">
                     {!imageError[project.title] ? (
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105 rounded-xl"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         priority={index === 0}
                         onError={() => handleImageError(project.title)}
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl">
                         <span className="text-gray-500 dark:text-gray-400">
                           {project.title}
                         </span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                   </div>
                 </div>
                 <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white font-geist-sans">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white font-poppins">
                     {project.title}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg font-geist-sans">
+                  <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg font-poppins">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-geist-sans"
+                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-poppins"
                       >
                         {tech}
                       </span>
@@ -127,7 +127,7 @@ export function Projects() {
                         variant="outline"
                         size="sm"
                         asChild
-                        className="relative overflow-hidden group hover:border-blue-500 transition-colors font-geist-sans"
+                        className="relative overflow-hidden group hover:border-blue-500 transition-colors font-poppins"
                       >
                         <Link
                           href={project.github}
@@ -150,7 +150,7 @@ export function Projects() {
                     <Button
                       size="sm"
                       asChild
-                      className="relative overflow-hidden group bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 hover:opacity-90 font-geist-sans"
+                      className="relative overflow-hidden group bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 hover:opacity-90 font-poppins"
                     >
                       <Link
                         href={project.demo}
