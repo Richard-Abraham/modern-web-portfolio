@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { 
   SiHtml5, SiCss3, SiJavascript, SiTypescript, 
   SiReact, SiNextdotjs, SiNodedotjs, SiExpress, 
