@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Github, Download, ArrowRight, Linkedin, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Github, Download, ArrowRight, Linkedin, ChevronLeft, ChevronRight, Globe } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect, useCallback } from "react"
@@ -190,14 +190,23 @@ export function Hero() {
               }
             }}
           >
-            <div className="relative w-full max-w-[320px] mx-auto lg:ml-auto">
-              <div className="relative aspect-[9/19] rounded-[2.5rem] bg-gradient-to-b from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 p-2.5 shadow-2xl shadow-blue-600/20 dark:shadow-blue-800/30">
-                <div className="relative w-full h-full rounded-[2.25rem] overflow-hidden bg-gray-900">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-2xl z-20 flex items-center justify-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-600" />
-                    <div className="w-14 h-1 rounded-full bg-gray-700" />
+            <div className="relative w-full max-w-[520px] mx-auto lg:ml-auto">
+              <div className="relative rounded-xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white dark:bg-gray-900 shadow-2xl shadow-blue-600/20 dark:shadow-blue-800/30">
+                <div className="h-10 flex items-center px-4 gap-2 bg-gray-50 dark:bg-gray-800/80 border-b border-gray-200/60 dark:border-gray-700/60">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
                   </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-gray-200/60 dark:bg-gray-700/60 text-xs text-gray-500 dark:text-gray-400 max-w-[220px]">
+                      <Globe className="h-3 w-3 shrink-0" />
+                      <span className="truncate">{slides[current].title.toLowerCase().replace(/\s+/g, '-')}.dev</span>
+                    </div>
+                  </div>
+                </div>
 
+                <div className="relative aspect-[4/3] bg-gray-100 dark:bg-gray-800">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={current}
@@ -218,47 +227,52 @@ export function Hero() {
                             src={slides[current].image}
                             alt={slides[current].title}
                             fill
-                            className="object-contain p-1"
-                            sizes="320px"
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 520px"
                             onError={() => setImageError(true)}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                            <span className="text-white/60 text-sm font-medium">
+                          <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                            <span className="text-gray-400 dark:text-gray-500 text-sm font-medium">
                               {slides[current].title}
                             </span>
                           </div>
                         )}
-                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
-                        <p className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium truncate">
-                          {slides[current].title}
-                        </p>
+                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                          <p className="text-white text-sm font-medium truncate max-w-[60%]">
+                            {slides[current].title}
+                          </p>
+                          <span className="text-white/60 text-xs flex items-center gap-1">
+                            Visit Site <ArrowRight className="h-3 w-3" />
+                          </span>
+                        </div>
                       </Link>
                     </motion.div>
                   </AnimatePresence>
 
                   <button
                     onClick={(e) => { e.preventDefault(); prev() }}
-                    className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/40 text-white/80 flex items-center justify-center hover:bg-black/60 transition-colors"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-200 flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 shadow-lg transition-all duration-200"
                     aria-label="Previous project"
                   >
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
                     onClick={(e) => { e.preventDefault(); next() }}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/40 text-white/80 flex items-center justify-center hover:bg-black/60 transition-colors"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-200 flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 shadow-lg transition-all duration-200"
                     aria-label="Next project"
                   >
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight className="h-5 w-5" />
                   </button>
 
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex gap-1 pb-1">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
                     {slides.map((_, i) => (
                       <button
                         key={i}
                         onClick={(e) => { e.preventDefault(); setImageError(false); setCurrent(i) }}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                          i === current ? "bg-white w-3" : "bg-white/40"
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          i === current ? "bg-white w-5" : "bg-white/50 hover:bg-white/70"
                         }`}
                         aria-label={`Go to slide ${i + 1}`}
                       />
@@ -266,7 +280,8 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -inset-5 bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-red-600/15 rounded-[3rem] blur-3xl -z-10" />
+
+              <div className="absolute -inset-6 bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-red-600/15 rounded-[2rem] blur-3xl -z-10" />
             </div>
           </motion.div>
         </div>
