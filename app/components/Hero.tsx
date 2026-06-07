@@ -1,12 +1,52 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Github, Download, ArrowRight, Linkedin } from 'lucide-react'
-import { Button } from "./ui/button"
+import { motion, AnimatePresence } from "framer-motion"
+import { Github, Download, ArrowRight, Linkedin, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from "next/link"
+import Image from "next/image"
+import { useState, useEffect, useCallback } from "react"
 import { ParticleBackground } from "./ParticleBackground"
 
+const slides = [
+  {
+    title: "Vikapu Website",
+    image: "/images/vikapu.png",
+    demo: "https://vikapuwebsite-main-richard-abrahams-projects.vercel.app",
+  },
+  {
+    title: "CarePoint",
+    image: "/images/carepoint.png",
+    demo: "https://dev-caramanagement.digisrupt.co.ke/",
+  },
+  {
+    title: "Nobuk",
+    image: "/images/Nobuk.png",
+    demo: "https://dazzling-tarsier-8456b4.netlify.app/nobuk_1",
+  },
+  {
+    title: "Sales Lead Generator",
+    image: "/images/saleslead.png",
+    demo: "https://sales-lead-tool.netlify.app/",
+  },
+  {
+    title: "Caresoko",
+    image: "/images/caresoko.png",
+    demo: "http://app.caresoko.com/#/welcomeScreen",
+  },
+]
+
 export function Hero() {
+  const [current, setCurrent] = useState(0)
+  const [imageError, setImageError] = useState(false)
+
+  const next = useCallback(() => { setImageError(false); setCurrent((c) => (c + 1) % slides.length) }, [])
+  const prev = useCallback(() => { setImageError(false); setCurrent((c) => (c - 1 + slides.length) % slides.length) }, [])
+
+  useEffect(() => {
+    const timer = setInterval(next, 4000)
+    return () => clearInterval(timer)
+  }, [next])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -81,44 +121,33 @@ export function Hero() {
               Passionate about creating innovative solutions that make a difference.
             </motion.p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-2"
-              variants={itemVariants}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center pt-2"
+            variants={itemVariants}
+          >
+            <Link
+              href="/Docs/Richard Owino CV.pdf"
+              download="Richard_Owino_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-8 py-3 w-full sm:w-auto font-medium bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 text-white hover:opacity-90 shadow-lg shadow-blue-600/25 dark:shadow-blue-600/20 transition-all duration-200"
             >
-              <Button
-                className="bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 hover:opacity-90 text-base sm:text-lg px-8 py-3 h-auto w-full sm:w-auto shadow-lg shadow-blue-600/25 font-geist"
-                asChild
-              >
-                <Link
-                  href="/Docs/Richard Owino CV.pdf"
-                  download="Richard_Owino_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Download className="h-5 w-5" />
-                  Download Resume
-                </Link>
-              </Button>
+              <Download className="h-5 w-5" />
+              Download Resume
+            </Link>
 
-              <Button
-                variant="outline"
-                className="text-base sm:text-lg px-8 py-3 h-auto w-full sm:w-auto border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 group font-geist"
-                asChild
-              >
-                <Link
-                  href="https://github.com/Richard-Abraham"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                  aria-label="View GitHub Profile"
-                >
-                  <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  View GitHub
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </motion.div>
+            <Link
+              href="https://github.com/Richard-Abraham"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub Profile"
+              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-8 py-3 w-full sm:w-auto font-medium border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 group"
+            >
+              <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              View GitHub
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
 
             <motion.div
               className="flex items-center gap-4 justify-center lg:justify-start pt-2"
@@ -161,21 +190,80 @@ export function Hero() {
               }
             }}
           >
-            <div className="relative w-full max-w-[320px] mx-auto lg:ml-auto animate-float">
+            <div className="relative w-full max-w-[320px] mx-auto lg:ml-auto">
               <div className="relative aspect-[9/19] rounded-[2.5rem] bg-gradient-to-b from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 p-2.5 shadow-2xl shadow-blue-600/20 dark:shadow-blue-800/30">
-                <div className="relative w-full h-full rounded-[2.25rem] overflow-hidden bg-black">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-2xl z-10 flex items-center justify-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-700" />
-                    <div className="w-14 h-1 rounded-full bg-gray-800" />
+                <div className="relative w-full h-full rounded-[2.25rem] overflow-hidden bg-gray-900">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-2xl z-20 flex items-center justify-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-600" />
+                    <div className="w-14 h-1 rounded-full bg-gray-700" />
                   </div>
-                  <video
-                    src="/images/videome.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={current}
+                      initial={{ opacity: 0, x: 40 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -40 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0"
+                    >
+                      <Link
+                        href={slides[current].demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full"
+                      >
+                        {!imageError ? (
+                          <Image
+                            src={slides[current].image}
+                            alt={slides[current].title}
+                            fill
+                            className="object-contain p-1"
+                            sizes="320px"
+                            onError={() => setImageError(true)}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gray-800">
+                            <span className="text-white/60 text-sm font-medium">
+                              {slides[current].title}
+                            </span>
+                          </div>
+                        )}
+                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
+                        <p className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium truncate">
+                          {slides[current].title}
+                        </p>
+                      </Link>
+                    </motion.div>
+                  </AnimatePresence>
+
+                  <button
+                    onClick={(e) => { e.preventDefault(); prev() }}
+                    className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/40 text-white/80 flex items-center justify-center hover:bg-black/60 transition-colors"
+                    aria-label="Previous project"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.preventDefault(); next() }}
+                    className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/40 text-white/80 flex items-center justify-center hover:bg-black/60 transition-colors"
+                    aria-label="Next project"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex gap-1 pb-1">
+                    {slides.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={(e) => { e.preventDefault(); setImageError(false); setCurrent(i) }}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                          i === current ? "bg-white w-3" : "bg-white/40"
+                        }`}
+                        aria-label={`Go to slide ${i + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="absolute -inset-5 bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-red-600/15 rounded-[3rem] blur-3xl -z-10" />
