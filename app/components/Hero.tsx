@@ -73,7 +73,7 @@ export function Hero() {
   return (
     <motion.section
       id="hero"
-      className="relative min-h-screen flex items-center pt-28 pb-16 md:pt-32 lg:pt-36"
+      className="relative min-h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center px-4 sm:px-6 lg:px-8 gap-8 md:gap-12 lg:gap-16 xl:gap-24 pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-8 md:pb-16"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -85,9 +85,9 @@ export function Hero() {
       <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 xl:gap-24">
-          <div className="w-full lg:w-[58%] space-y-8 text-center lg:text-left">
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+          <div className="w-full md:w-[55%] space-y-6 md:space-y-8 text-center md:text-left">
             <motion.div variants={itemVariants} className="space-y-5">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50">
                 <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
@@ -125,28 +125,26 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center pt-2"
             variants={itemVariants}
           >
-            <Link
+            <a
               href="/Docs/Richard Owino CV.pdf"
               download="Richard_Owino_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-8 py-3 w-full sm:w-auto font-medium bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 text-white hover:opacity-90 shadow-lg shadow-blue-600/25 dark:shadow-blue-600/20 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 w-full sm:w-auto font-medium bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 text-white hover:opacity-90 shadow-lg shadow-blue-600/25 dark:shadow-blue-600/20 transition-all duration-200"
             >
               <Download className="h-5 w-5" />
               Download Resume
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="https://github.com/Richard-Abraham"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View GitHub Profile"
-              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-8 py-3 w-full sm:w-auto font-medium border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 group"
+              className="inline-flex items-center justify-center gap-2 rounded-lg text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 w-full sm:w-auto font-medium border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 group"
             >
               <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
               View GitHub
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </motion.div>
 
             <motion.div
@@ -179,7 +177,7 @@ export function Hero() {
           </div>
 
           <motion.div
-            className="w-full lg:w-[42%] flex items-center justify-center"
+            className="w-full md:w-[45%] flex items-center justify-center"
             variants={{
               hidden: { opacity: 0, x: 60, scale: 0.95 },
               visible: {
@@ -190,13 +188,13 @@ export function Hero() {
               }
             }}
           >
-            <div className="relative w-full max-w-[520px] mx-auto lg:ml-auto">
-              <div className="relative rounded-xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white dark:bg-gray-900 shadow-2xl shadow-blue-600/20 dark:shadow-blue-800/30">
-                <div className="h-10 flex items-center px-4 gap-2 bg-gray-50 dark:bg-gray-800/80 border-b border-gray-200/60 dark:border-gray-700/60">
+            <div className="relative w-full max-w-[400px] sm:max-w-[520px] mx-auto lg:ml-auto">
+              <div className="relative rounded-lg sm:rounded-xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white dark:bg-gray-900 shadow-2xl shadow-blue-600/20 dark:shadow-blue-800/30">
+                <div className="h-8 sm:h-10 flex items-center px-3 sm:px-4 gap-2 bg-gray-50 dark:bg-gray-800/80 border-b border-gray-200/60 dark:border-gray-700/60">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500" />
                   </div>
                   <div className="flex-1 flex items-center justify-center">
                     <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-gray-200/60 dark:bg-gray-700/60 text-xs text-gray-500 dark:text-gray-400 max-w-[220px]">
