@@ -30,7 +30,7 @@ const projects = [
     title: "Nobuk",
     description:
       "A collection platform for communities, enabling transparent financial management with M-Pesa and WhatsApp integration.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["HTML", "CSS", "JavaScript", "Flutter", "Python"],
     github: "",
     demo: "https://dazzling-tarsier-8456b4.netlify.app/nobuk_1",
     image: "/images/Nobuk.png",
@@ -48,7 +48,7 @@ const projects = [
     title: "Caresoko",
     description:
       "An agency platform for homecare providers and adult homes, streamlining care operations and client management.",
-    tech: ["PHP", "Laravel", "JavaScript", "MySQL"],
+    tech: ["Flutter", "Dart", "Firebase"],
     github: "",
     demo: "http://app.caresoko.com/#/welcomeScreen",
     image: "/images/caresoko.png",
