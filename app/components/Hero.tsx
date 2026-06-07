@@ -73,7 +73,7 @@ export function Hero() {
   return (
     <motion.section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 md:pt-32 lg:pt-36"
+      className="relative min-h-screen flex items-center pt-28 pb-16 md:pt-32 lg:pt-36"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
