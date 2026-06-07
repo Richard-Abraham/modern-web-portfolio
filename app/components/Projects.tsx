@@ -21,7 +21,7 @@ const projects = [
     title: "CarePoint",
     description:
       "An adult home and homecare management hub, digitizing workflow and job allocation — from payments and staff management to recipient tracking.",
-    tech: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    tech: ["PHP", "Laravel", "JavaScript", "MySQL"],
     github: "",
     demo: "https://dev-caramanagement.digisrupt.co.ke/",
     image: "/images/carepoint.png",
@@ -30,7 +30,7 @@ const projects = [
     title: "Nobuk",
     description:
       "A collection platform for communities, enabling transparent financial management with M-Pesa and WhatsApp integration.",
-    tech: ["HTML", "CSS", "JavaScript", "Python"],
+    tech: ["HTML", "CSS", "JavaScript"],
     github: "",
     demo: "https://dazzling-tarsier-8456b4.netlify.app/nobuk_1",
     image: "/images/Nobuk.png",
@@ -39,7 +39,7 @@ const projects = [
     title: "Sales Lead Generator",
     description:
       "A lead generator that searches by business name (e.g. property management) and location (e.g. Nairobi) using the Google Places API, eliminating manual research.",
-    tech: ["PHP", "Laravel", "JavaScript", "Google Places API"],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Google Places API"],
     github: "",
     demo: "https://sales-lead-tool.netlify.app/",
     image: "/images/saleslead.png",
